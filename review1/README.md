@@ -7,3 +7,8 @@
 # Как взламывать: #
  + Набираете текст в поле рядом с подписью
  + Нажимается кнопка
+# Как запускать: #
+<p><code> git clone https://github.com/Nerubes/review1.git</code></p>
+<p><code> cd review1 </code></p>
+<p><code> python main.pyw </code></p>
+
