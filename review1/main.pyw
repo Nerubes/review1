@@ -20,7 +20,7 @@ def encrypting(string, seed, where_to_put_answer, what_cipher):
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
-        if not seed.get().isdigit() and not correct.correct(string.get(), None):
+        if not seed.get().isdigit():
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, ceasar.encrypt(string.get(), int(seed.get())))
@@ -48,7 +48,7 @@ def decoding(string, seed, where_to_put_answer, what_cipher):
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
-        if not seed.get().isdigit() and not correct.correct(string, None):
+        if not seed.get().isdigit():
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, ceasar.decode(string.get(), int(seed.get())))
@@ -66,11 +66,11 @@ def decoding(string, seed, where_to_put_answer, what_cipher):
 
 def hacking(string, where_to_put_answer):
     where_to_put_answer.delete(1.0, tkinter.END)
-    if len(string.get()) != 0 and correct.correct(string.get(), None):
+    if len(string.get()) != 0:
         seed = hacking_ceasar.frequency_analysis(string.get())
         where_to_put_answer.insert(tkinter.END, "key for Ceasar ")
         where_to_put_answer.insert(tkinter.END, seed)
-        where_to_put_answer.insert(tkinter.END, "\nOriginal string")
+        where_to_put_answer.insert(tkinter.END, "\nOriginal string: ")
         where_to_put_answer.insert(tkinter.END, ceasar.decode(string.get(), seed))
     else:
         where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")

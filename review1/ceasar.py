@@ -10,15 +10,16 @@ def encrypt(string, seed):
     """
     string = string.lower()
     res = ''
-    if alphabet.eng.find(string.split()[0][0]) >= 0:
-        alpha = alphabet.eng
-    else:
-        alpha = alphabet.rus
     for i in string:
-        index = alpha.find(i)
-        res += alpha[(index + seed) % len(alpha)]
+        index_eng = alphabet.eng.find(i)
+        index_rus = alphabet.rus.find(i)
+        if index_eng >= 0:
+            res += alphabet.eng[(index_eng + seed) % len(alphabet.eng)]
+        elif index_rus >= 0:
+            res += alphabet.rus[(index_rus + seed) % len(alphabet.rus)]
+        else:
+            res += i
     return res
-
 
 def decode(string, seed):
     """
@@ -29,11 +30,13 @@ def decode(string, seed):
     """
     string = string.lower()
     res = ''
-    if alphabet.eng.find(string.split()[0][0]) >= 0:
-        alpha = alphabet.eng
-    else:
-        alpha = alphabet.rus
     for i in string:
-        index = alpha.find(i)
-        res += alpha[(index - seed) % len(alpha)]
+        index_eng = alphabet.eng.find(i)
+        index_rus = alphabet.rus.find(i)
+        if index_eng >= 0:
+            res += alphabet.eng[(len(alphabet.eng) + index_eng - seed) % len(alphabet.eng)]
+        elif index_rus >= 0:
+            res += alphabet.rus[(len(alphabet.rus) + index_rus - seed) % len(alphabet.rus)]
+        else:
+            res += i
     return res
