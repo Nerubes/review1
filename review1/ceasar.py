@@ -1,15 +1,6 @@
 import alphabet
 
 
-def correct(string):
-    arg1 = True
-    arg2 = True
-    for i in string:
-        arg1 = i in alphabet.rus and arg1
-        arg2 = i in alphabet.eng and arg2
-    return arg1 or arg2
-
-
 def encrypt(string, seed):
     """
     Шифрует строку используя шифр цезаря

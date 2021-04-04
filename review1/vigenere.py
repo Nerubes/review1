@@ -2,6 +2,12 @@ import alphabet
 
 
 def create_key(string, seed):
+    """
+    ССоздает ключ если оригинальный слишком короткий
+    :param string: строка под которую надо подгонять длину
+    :param seed: оригинальный ключ
+    :return: новый ключ
+    """
     return seed * (len(string) // len(seed) + 1)
 
 

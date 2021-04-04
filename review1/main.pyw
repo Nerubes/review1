@@ -3,6 +3,7 @@ import tkinter
 import tkinter.ttk
 
 import ceasar
+import correct
 import hacking_ceasar
 import vernam
 import vigenere
@@ -19,18 +20,18 @@ def encrypting(string, seed, where_to_put_answer, what_cipher):
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
-        if not seed.get().isdigit() and not ceasar.correct(string):
+        if not seed.get().isdigit() and not correct.correct(string.get(), None):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, ceasar.encrypt(string.get(), int(seed.get())))
     elif what_cipher.get() == "Vernam":
-        if not vernam.correct(string.get(), seed.get()) or len(seed.get()) < len(string.get()) or len(
+        if not correct.correct(string.get(), seed.get()) or len(seed.get()) < len(string.get()) or len(
                 string.get()) == 0:
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, vernam.encrypt(string.get(), seed.get()))
     else:
-        if not seed.get().isalpha():
+        if not seed.get().isalpha() or not correct.correct(string.get(), seed.get()):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, vigenere.encrypt(string.get(), seed.get()))
@@ -47,17 +48,17 @@ def decoding(string, seed, where_to_put_answer, what_cipher):
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
-        if not seed.get().isdigit() and not ceasar.correct(string):
+        if not seed.get().isdigit() and not correct.correct(string, None):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, ceasar.decode(string.get(), int(seed.get())))
     elif what_cipher.get() == "Vernam":
-        if not vernam.correct(string.get(), seed.get()) or len(seed.get()) != len(string.get()) or len(string.get()) == 0:
+        if not correct.correct(string.get(), seed.get()) or len(seed.get()) != len(string.get()) or len(string.get()) == 0:
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, vernam.encrypt(string.get(), seed.get()))
     else:
-        if not seed.get().isalpha():
+        if not seed.get().isalpha() or not correct.correct(string.get(), seed.get()):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
             where_to_put_answer.insert(tkinter.END, vigenere.decode(string.get(), seed.get()))
@@ -65,12 +66,14 @@ def decoding(string, seed, where_to_put_answer, what_cipher):
 
 def hacking(string, where_to_put_answer):
     where_to_put_answer.delete(1.0, tkinter.END)
-    if len(string.get()) != 0 and hacking_ceasar.correct(string.get()):
-        seed = hacking_ceasar.frequency_analysis(string)
+    if len(string.get()) != 0 and correct.correct(string.get(), None):
+        seed = hacking_ceasar.frequency_analysis(string.get())
         where_to_put_answer.insert(tkinter.END, "key for Ceasar ")
         where_to_put_answer.insert(tkinter.END, seed)
         where_to_put_answer.insert(tkinter.END, "\nOriginal string")
-        where_to_put_answer.insert(tkinter.END, ceasar.decode(string, seed))
+        where_to_put_answer.insert(tkinter.END, ceasar.decode(string.get(), seed))
+    else:
+        where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
 
 
 if __name__ == "__main__":
