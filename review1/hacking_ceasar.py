@@ -14,6 +14,6 @@ def frequency_analysis(string):
         count[j] += 1
     most_common = str(count.most_common()[0])
     if alphabet.eng.find(string[0]) >= 0:
-        return (len(alphabet.eng) - alphabet.eng.find(most_common) + alphabet.eng.find('e')) % len(alphabet.eng)
+        return (alphabet.eng.find(most_common[2]) + alphabet.eng.find(' ')) % len(alphabet.eng)
     else:
-        return (len(alphabet.rus) - alphabet.rus.find(most_common) + alphabet.rus.find('о')) % len(alphabet.rus)
+        return (alphabet.rus.find(most_common[2]) + alphabet.rus.find(' ')) % len(alphabet.rus)
