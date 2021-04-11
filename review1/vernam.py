@@ -9,8 +9,6 @@ def encrypt(string, seed):
     :return: зашифрованный/расшифрованный текст
     (шифрование и дешифровка являются одним и тем же действием)
     """
-    string = string.lower()
-    seed = seed.lower()
     res = ""
     if string[0] in alphabet.eng:
         using_alphabet = alphabet.eng

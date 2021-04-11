@@ -7,8 +7,14 @@
 # Как взламывать: #
  + Набираете текст в поле рядом с подписью
  + Нажимается кнопка
-# Как запускать: #
-<p><code> git clone https://github.com/Nerubes/review1.git</code></p>
-<p><code> cd review1 </code></p>
-<p><code> python main.pyw </code></p>
+# Как запускать: # 
+```
+git clone https://github.com/Nerubes/review1.git
+sudo apt install python3-opencv
+sudo apt install python3-tk
+cd review1
+python main.pyw
+```
+
+![img.png]()
 

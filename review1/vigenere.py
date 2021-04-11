@@ -18,30 +18,17 @@ def encrypt(string, seed):
     :param seed: ключ
     :return: зашифрованый текст
     """
-    string = string.lower()
-    seed = seed.lower()
     seed = create_key(string, seed)
     res = ""
     letter_seed = 0
+    if string[0] in alphabet.eng:
+        using_alphabet = alphabet.eng
+    else:
+        using_alphabet = alphabet.rus
     for letter_str in range(len(string)):
-        index_eng = alphabet.eng.find(string[letter_str])
-        index_rus = alphabet.rus.find(string[letter_str])
-        index_seed_eng = alphabet.eng.find(seed[letter_seed])
-        index_seed_rus = alphabet.rus.find(seed[letter_seed])
-        if index_eng >= 0:
-            if index_seed_eng >= 0:
-                res += alphabet.eng[(index_eng + index_seed_eng) % len(alphabet.eng)]
-            else:
-                res += alphabet.eng[(index_eng + index_seed_rus) % len(alphabet.eng)]
-        elif index_rus >= 0:
-            if index_seed_rus >= 0:
-                res += alphabet.rus[(index_eng + index_seed_eng) % len(alphabet.rus)]
-            else:
-                res += alphabet.rus[(index_eng + index_seed_rus) % len(alphabet.rus)]
-        else:
-            res += letter_str
-            letter_seed -= 1
-        letter_seed += 1
+        index = using_alphabet.find(string[letter_str])
+        index_seed = using_alphabet.find(seed[letter_seed])
+        res += alphabet.eng[(index + index_seed) % len(using_alphabet)]
     return res
 
 
@@ -52,28 +39,15 @@ def decode(string, seed):
     :param seed: ключ
     :return: зашифрованый текст
     """
-    string = string.lower()
-    seed = seed.lower()
     seed = create_key(string, seed)
     res = ""
-    j = 0
-    for i in range(len(string)):
-        index_eng = alphabet.eng.find(string[i])
-        index_rus = alphabet.rus.find(string[i])
-        index_seed_eng = alphabet.eng.find(seed[j])
-        index_seed_rus = alphabet.rus.find(seed[j])
-        if index_eng >= 0:
-            if index_seed_eng >= 0:
-                res += alphabet.eng[(index_eng - index_seed_eng + len(alphabet.eng)) % len(alphabet.eng)]
-            else:
-                res += alphabet.eng[(index_eng - index_seed_rus + len(alphabet.eng)) % len(alphabet.eng)]
-        elif index_rus >= 0:
-            if index_seed_rus >= 0:
-                res += alphabet.rus[(index_eng - index_seed_eng + len(alphabet.rus)) % len(alphabet.rus)]
-            else:
-                res += alphabet.rus[(index_eng - index_seed_rus + len(alphabet.rus)) % len(alphabet.rus)]
-        else:
-            res += i
-            j -= 1
-        j += 1
+    letter_seed = 0
+    if string[0] in alphabet.eng:
+        using_alphabet = alphabet.eng
+    else:
+        using_alphabet = alphabet.rus
+    for letter_str in range(len(string)):
+        index = using_alphabet.find(string[letter_str])
+        index_seed = using_alphabet.find(seed[letter_seed])
+        res += alphabet.eng[(index - index_seed + len(using_alphabet)) % len(using_alphabet)]
     return res

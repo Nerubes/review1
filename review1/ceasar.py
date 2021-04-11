@@ -8,7 +8,6 @@ def encrypt(string, seed):
     :param seed: ключ
     :return: зашифрованный текст
     """
-    string = string.lower()
     res = ""
     for letter in string:
         index_eng = alphabet.eng.find(letter)
@@ -21,6 +20,7 @@ def encrypt(string, seed):
             res += letter
     return res
 
+
 def decode(string, seed):
     """
     Расшифровывает строку используя шифр цезаря
@@ -28,7 +28,6 @@ def decode(string, seed):
     :param seed: ключ
     :return: расшифрованный текст
     """
-    string = string.lower()
     res = ""
     for letter in string:
         index_eng = alphabet.eng.find(letter)
