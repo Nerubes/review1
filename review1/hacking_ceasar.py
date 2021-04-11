@@ -10,10 +10,10 @@ def frequency_analysis(string):
     :return: ключ цезаря
     """
     count = collections.Counter()
-    for j in string:
-        count[j] += 1
+    for letter in string:
+        count[letter] += 1
     most_common = str(count.most_common()[0])
     if alphabet.eng.find(string[0]) >= 0:
-        return (alphabet.eng.find(most_common[2]) + alphabet.eng.find(' ')) % len(alphabet.eng)
+        return (alphabet.eng.find(most_common[2]) + alphabet.eng.find(" ")) % len(alphabet.eng)
     else:
-        return (alphabet.rus.find(most_common[2]) + alphabet.rus.find(' ')) % len(alphabet.rus)
+        return (alphabet.rus.find(most_common[2]) + alphabet.rus.find(" ")) % len(alphabet.rus)

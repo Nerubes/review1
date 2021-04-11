@@ -3,7 +3,7 @@ import alphabet
 
 def create_key(string, seed):
     """
-    ССоздает ключ если оригинальный слишком короткий
+    Создает ключ если оригинальный слишком короткий
     :param string: строка под которую надо подгонять длину
     :param seed: оригинальный ключ
     :return: новый ключ
@@ -21,13 +21,13 @@ def encrypt(string, seed):
     string = string.lower()
     seed = seed.lower()
     seed = create_key(string, seed)
-    res = ''
-    j = 0
-    for i in range(len(string)):
-        index_eng = alphabet.eng.find(string[i])
-        index_rus = alphabet.rus.find(string[i])
-        index_seed_eng = alphabet.eng.find(seed[j])
-        index_seed_rus = alphabet.rus.find(seed[j])
+    res = ""
+    letter_seed = 0
+    for letter_str in range(len(string)):
+        index_eng = alphabet.eng.find(string[letter_str])
+        index_rus = alphabet.rus.find(string[letter_str])
+        index_seed_eng = alphabet.eng.find(seed[letter_seed])
+        index_seed_rus = alphabet.rus.find(seed[letter_seed])
         if index_eng >= 0:
             if index_seed_eng >= 0:
                 res += alphabet.eng[(index_eng + index_seed_eng) % len(alphabet.eng)]
@@ -39,9 +39,9 @@ def encrypt(string, seed):
             else:
                 res += alphabet.rus[(index_eng + index_seed_rus) % len(alphabet.rus)]
         else:
-            res += i
-            j -= 1
-        j += 1
+            res += letter_str
+            letter_seed -= 1
+        letter_seed += 1
     return res
 
 
@@ -55,7 +55,7 @@ def decode(string, seed):
     string = string.lower()
     seed = seed.lower()
     seed = create_key(string, seed)
-    res = ''
+    res = ""
     j = 0
     for i in range(len(string)):
         index_eng = alphabet.eng.find(string[i])
@@ -68,7 +68,7 @@ def decode(string, seed):
             else:
                 res += alphabet.eng[(index_eng - index_seed_rus + len(alphabet.eng)) % len(alphabet.eng)]
         elif index_rus >= 0:
-            if index_seed_eng >= 0:
+            if index_seed_rus >= 0:
                 res += alphabet.rus[(index_eng - index_seed_eng + len(alphabet.rus)) % len(alphabet.rus)]
             else:
                 res += alphabet.rus[(index_eng - index_seed_rus + len(alphabet.rus)) % len(alphabet.rus)]

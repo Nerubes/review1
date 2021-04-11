@@ -20,21 +20,21 @@ def encrypting(string, seed, where_to_put_answer, what_cipher):
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
-        if not seed.get().isdigit():
+        if not seed.isdigit():
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, ceasar.encrypt(string.get(), int(seed.get())))
+            where_to_put_answer.insert(tkinter.END, ceasar.encrypt(string, int(seed)))
     elif what_cipher.get() == "Vernam":
-        if not correct.correct(string.get(), seed.get()) or len(seed.get()) < len(string.get()) or len(
-                string.get()) == 0:
+        if not correct.correct(string, seed) or len(seed) < len(string) or len(
+                string) == 0:
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, vernam.encrypt(string.get(), seed.get()))
+            where_to_put_answer.insert(tkinter.END, vernam.encrypt(string, seed))
     else:
-        if not seed.get().isalpha() or not correct.correct(string.get(), seed.get()):
+        if not seed.isalpha() or not correct.correct(string, seed):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, vigenere.encrypt(string.get(), seed.get()))
+            where_to_put_answer.insert(tkinter.END, vigenere.encrypt(string, seed))
 
 
 def decoding(string, seed, where_to_put_answer, what_cipher):
@@ -48,30 +48,30 @@ def decoding(string, seed, where_to_put_answer, what_cipher):
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
-        if not seed.get().isdigit():
+        if not seed.isdigit():
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, ceasar.decode(string.get(), int(seed.get())))
+            where_to_put_answer.insert(tkinter.END, ceasar.decode(string, int(seed)))
     elif what_cipher.get() == "Vernam":
-        if not correct.correct(string.get(), seed.get()) or len(seed.get()) != len(string.get()) or len(string.get()) == 0:
+        if not correct.correct(string, seed) or len(seed) != len(string) or len(string) == 0:
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, vernam.encrypt(string.get(), seed.get()))
+            where_to_put_answer.insert(tkinter.END, vernam.encrypt(string, seed))
     else:
-        if not seed.get().isalpha() or not correct.correct(string.get(), seed.get()):
+        if not seed.isalpha() or not correct.correct(string, seed):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, vigenere.decode(string.get(), seed.get()))
+            where_to_put_answer.insert(tkinter.END, vigenere.decode(string, seed))
 
 
 def hacking(string, where_to_put_answer):
     where_to_put_answer.delete(1.0, tkinter.END)
-    if len(string.get()) != 0:
-        seed = hacking_ceasar.frequency_analysis(string.get())
+    if len(string) != 0:
+        seed = hacking_ceasar.frequency_analysis(string)
         where_to_put_answer.insert(tkinter.END, "key for Ceasar ")
         where_to_put_answer.insert(tkinter.END, seed)
         where_to_put_answer.insert(tkinter.END, "\nOriginal string: ")
-        where_to_put_answer.insert(tkinter.END, ceasar.decode(string.get(), seed))
+        where_to_put_answer.insert(tkinter.END, ceasar.decode(string, seed))
     else:
         where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
 
@@ -96,11 +96,11 @@ if __name__ == "__main__":
     output_hack.grid(column=4, row=3, padx=5, pady=10)
     cipher = tkinter.ttk.Combobox(window, state="readonly")
     cipher.grid(column=1, row=0)
-    cipher['values'] = ("Ceasar", "Vernam", "Vigenere")
+    cipher["values"] = ("Ceasar", "Vernam", "Vigenere")
     cipher.current(0)
-    encrypt = partial(encrypting, str_for_encrypting, column_for_seed, output, cipher)
-    decode = partial(decoding, str_for_encrypting, column_for_seed, output, cipher)
-    hack = partial(hacking, str_for_hacking, output_hack)
+    encrypt = partial(encrypting, str_for_encrypting.get(), column_for_seed.get(), output, cipher)
+    decode = partial(decoding, str_for_encrypting.get(), column_for_seed.get(), output, cipher)
+    hack = partial(hacking, str_for_hacking.get(), output_hack)
     btn_for_encrypting = tkinter.Button(window, text="Encrypt", command=encrypt)
     btn_for_decoding = tkinter.Button(window, text="Decode", command=decode)
     btn_for_hack = tkinter.Button(window, text="Hack", command=hack)

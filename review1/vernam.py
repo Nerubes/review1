@@ -11,7 +11,7 @@ def encrypt(string, seed):
     """
     string = string.lower()
     seed = seed.lower()
-    res = ''
+    res = ""
     if string[0] in alphabet.eng:
         using_alphabet = alphabet.eng
     else:
