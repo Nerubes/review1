@@ -56,7 +56,7 @@ def encrypt(string, image_name):
                         break
                     j[k] = format(j[k], "08b")[:-1] + binary[index]
                     index += 1
-    cv2.imwrite(name, img)
+    cv2.imwrite(image_name, img)
 
 
 def decode(image_name):
