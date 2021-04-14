@@ -2,6 +2,11 @@ import cv2
 
 
 def bin_str(string):
+    """
+    Переводит в двоичный формат посимвольно
+    :param string: строка которую нужно представить в двочном коде
+    :return: двоичный код который содержит коды символов изначальной строки
+    """
     res = ""
     for char in string:
         res += format(ord(char), "08b")
@@ -9,6 +14,11 @@ def bin_str(string):
 
 
 def correct_for_img(string):
+    """
+    Проверяет являетсся ли строка корректной для зашифровки (принадлежит ASCII)
+    :param string: строка для проверки
+    :return: является ли строка корректной
+    """
     for i in string:
         if ord(i) > 127:
             return False
@@ -16,13 +26,25 @@ def correct_for_img(string):
 
 
 def correct_for_img_size(img, string):
+    """
+    Проверяет "влезет" ли текст в картинку
+    :param img: картинка
+    :param string: текст
+    :return: поместиться ли текст в картинку
+    """
     if img.shape[0] * img.shape[1] < len(string) + 6:
         return False
     return True
 
 
-def encrypt(string, name):
-    img = cv2.imread(name)
+def encrypt(string, image_name):
+    """
+    Зашифровывает текст в картинку и ссохраняет ее
+    :param string: текст который надо зашифровать
+    :param image_name: название картинки
+    :return: ничего
+    """
+    img = cv2.imread(image_name)
     if correct_for_img(string) and correct_for_img_size(img, string):
         string += "endstr"
         binary = bin_str(string)
@@ -38,6 +60,11 @@ def encrypt(string, name):
 
 
 def decode(image_name):
+    """
+    Достает текст, который был записан в картинку
+    :param image_name: название картинки
+    :return: текст, содержащийся в картинке
+    """
     image = cv2.imread(image_name)
     storage = ""
     for i in image:
@@ -56,7 +83,6 @@ def decode(image_name):
             letter = ""
     res = ""
     for i in bytes:
-        print(i, int(i, 2), chr(int(i, 2)))
         res += chr(int(i, 2))
         if res[-6:] == "endstr":
             break
