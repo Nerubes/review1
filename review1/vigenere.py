@@ -23,8 +23,10 @@ def encrypt(string, seed):
     letter_seed = 0
     if string[0] in alphabet.eng:
         using_alphabet = alphabet.eng
-    else:
+    elif string[0] in alphabet.rus:
         using_alphabet = alphabet.rus
+    else:
+        return "Incorrect Input. Try again."
     for letter_str in range(len(string)):
         index = using_alphabet.find(string[letter_str])
         index_seed = using_alphabet.find(seed[letter_seed])
@@ -44,8 +46,10 @@ def decode(string, seed):
     letter_seed = 0
     if string[0] in alphabet.eng:
         using_alphabet = alphabet.eng
-    else:
+    elif string[0] in alphabet.rus:
         using_alphabet = alphabet.rus
+    else:
+        return "Incorrect Input. Try again."
     for letter_str in range(len(string)):
         index = using_alphabet.find(string[letter_str])
         index_seed = using_alphabet.find(seed[letter_seed])

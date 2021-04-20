@@ -21,6 +21,7 @@ def encrypting(string_get, seed_get, where_to_put_answer, what_cipher):
     :return: ничего
     """
     string = string_get.get().lower()
+    string = correct.correction(string)
     seed = seed_get.get()
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
@@ -51,6 +52,7 @@ def decoding(string_get, seed_get, where_to_put_answer, what_cipher):
     :return: ничего
     """
     string = string_get.get().lower()
+    string = correct.correction(string)
     seed = seed_get.get()
     where_to_put_answer.delete(1.0, tkinter.END)
     if what_cipher.get() == "Ceasar":
@@ -96,7 +98,7 @@ def encrypting_img(name_get, string_get):
     :param string_get: текст, который надо зашифровать
     :return: ничего
     """
-    bmp.encrypt(string.get(), name.get())
+    bmp.encrypt(string_get.get(), name_get.get())
 
 
 def decoding_img(name_get, where_to_put_answer):

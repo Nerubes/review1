@@ -12,8 +12,10 @@ def encrypt(string, seed):
     res = ""
     if string[0] in alphabet.eng:
         using_alphabet = alphabet.eng
-    else:
+    elif string[0] in alphabet.rus:
         using_alphabet = alphabet.rus
+    else:
+        return "Incorrect Input. Try again."
     for i in range(len(string)):
         res += using_alphabet[(using_alphabet.find(string[i])) ^ (using_alphabet.find(seed[i]))]
     return res

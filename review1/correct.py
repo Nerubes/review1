@@ -14,3 +14,14 @@ def correct(string, seed):
         arg1 = i in alphabet.rus and arg1 and j in alphabet.rus
         arg2 = i in alphabet.eng and arg2 and j in alphabet.eng
     return arg1 or arg2
+
+
+def correction(string):
+    """
+    Удаляет пробелы в начале строки
+    :param string: строка в которой нужно удалить пробелы
+    :return: строка без пробелов
+    """
+    if len(string) != 0 and string[0] == " ":
+        string = string[1:]
+    return string
