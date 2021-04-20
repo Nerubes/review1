@@ -16,7 +16,7 @@ def encrypt(string, seed):
     else:
         return "Incorrect Input. Try again."
     for letter in string:
-        index = using.find(letter)
+        index = using_alphabet.find(letter)
         if index >= 0:
             res += using_alphabet[(index + seed) % len(using_alphabet)]
         else:
