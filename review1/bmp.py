@@ -21,8 +21,8 @@ def correct_for_img(string):
     :param string: строка для проверки
     :return: является ли строка корректной
     """
-    for i in string:
-        if ord(i) > const.ASCII_LEN:
+    for char in string:
+        if ord(char) > const.ASCII_LEN:
             return False
     return True
 
