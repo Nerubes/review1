@@ -1,2 +1,2 @@
-eng = ' abcdefghijklmnopqrstuvwxyz'
-rus = ' абвгдеёжзийклмнопрстуфхцчшщъьэюя'
+eng = " abcdefghijklmnopqrstuvwxyz"
+rus = " абвгдеёжзийклмнопрстуфхцчшщъьэюя"

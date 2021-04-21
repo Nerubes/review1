@@ -72,7 +72,7 @@ def decode(image_name):
             for k in range(3):
                 storage += format(pixel[k], "08b")[-1]
     index = 0
-    bytes = list()
+    bytess = list()
     letter = ""
     for bit in storage:
         index += 1
@@ -82,8 +82,8 @@ def decode(image_name):
             index = 0
             letter = ""
     res = ""
-    for i in bytes:
-        res += chr(int(i, 2))
+    for byte in bytess:
+        res += chr(int(byte, 2))
         if res[-len(const.END):] == const.END:
             break
     return res[:-len(const.END)]
