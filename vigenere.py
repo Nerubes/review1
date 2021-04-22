@@ -31,5 +31,5 @@ def encrypt(string, seed, n):
     for letter_str in range(len(string)):
         index = using_alphabet.find(string[letter_str])
         index_seed = using_alphabet.find(seed[letter_seed])
-        res += alphabet.eng[(index + n * index_seed + len(using_alphabet)) % len(using_alphabet)]
+        res += using_alphabet[(index + n * index_seed + len(using_alphabet)) % len(using_alphabet)]
     return res
