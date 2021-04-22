@@ -42,7 +42,6 @@ def encrypt(string, image_name):
     Зашифровывает текст в картинку и ссохраняет ее
     :param string: текст который надо зашифровать
     :param image_name: название картинки
-    :return: ничего
     """
     img = cv2.imread(image_name)
     if correct_for_img(string) and correct_for_img_size(img, string):
