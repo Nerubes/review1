@@ -1,2 +1,3 @@
-eng = " abcdefghijklmnopqrstuvwxyz"
-rus = " абвгдеёжзийклмнопрстуфхцчшщъьэюя"
+import string
+eng = " " + string.ascii_lowercase
+rus = " " + "абвгдеёжзийклмнопрстуфхцчшщъьэюя"
