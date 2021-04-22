@@ -19,7 +19,6 @@ def encrypting(string_get, seed_get, where_to_put_answer, what_cipher):
     :param seed_get: ключ
     :param where_to_put_answer: поле, куда помещается ответ
     :param what_cipher: название шифра
-    :return: ничего
     """
     string = string_get.get().lower()
     string = correct.correction(string)
@@ -50,7 +49,6 @@ def decoding(string_get, seed_get, where_to_put_answer, what_cipher):
     :param seed_get: ключ
     :param where_to_put_answer: поле, куда помещается ответ
     :param what_cipher: название шифра
-    :return: ничего
     """
     string = string_get.get().lower()
     string = correct.correction(string)
@@ -78,7 +76,6 @@ def hacking(string_get, where_to_put_answer):
     Расшифровывает строку зашифрованную шифром цезаря с неизвестным ключем
     :param string_get: строка которую нужно расшифровать
     :param where_to_put_answer: поле куда помещать ответ
-    :return: ничего
     """
     string = string_get.get()
     where_to_put_answer.delete(1.0, tkinter.END)
@@ -97,7 +94,6 @@ def encrypting_img(name_get, string_get):
     Зашифровывает текст в картинку в формате bmp или png
     :param name_get: название картинки в которую надо зашифровать текст
     :param string_get: текст, который надо зашифровать
-    :return: ничего
     """
     bmp.encrypt(string_get.get(), name_get.get())
 
@@ -107,7 +103,6 @@ def decoding_img(name_get, where_to_put_answer):
     Расшифровывает текст из картинки в формате bmp или png
     :param name_get: название картинки из которой надо извелчь текст
     :param where_to_put_answer: поле куда поместить ответ
-    :return: ничего
     """
     where_to_put_answer.delete(1.0, tkinter.END)
     where_to_put_answer.insert(tkinter.END, bmp.decode(name_get.get()))
