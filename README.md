@@ -26,7 +26,6 @@
 git clone https://github.com/Nerubes/review1.git
 sudo apt install python3-opencv
 sudo apt install python3-tk
-cd review1
 python main.pyw
 ```
 
