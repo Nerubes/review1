@@ -17,5 +17,6 @@ def encrypt(string, seed):
     else:
         return "Incorrect Input. Try again."
     for i in range(len(string)):
+        print(using_alphabet, (using_alphabet.find(string[i])) ^ (using_alphabet.find(seed[i])))
         res += using_alphabet[(using_alphabet.find(string[i])) ^ (using_alphabet.find(seed[i]))]
     return res

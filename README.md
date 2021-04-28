@@ -29,3 +29,12 @@ sudo apt install python3-tk
 python main.pyw
 ```
 
+# Примеры: #
+![img.png](Screenshot 2.png)
+![img.png](Screenshot 3.png)
+![img.png](Screenshot 4.png)
+![img.png](Screenshot 5.png)
+![img.png](Screenshot 6.png)
+![img.png](Screenshot 7.png)
+![img.png](Screenshot 8(1).png)
+![img.png](Screenshot 8(2).png)

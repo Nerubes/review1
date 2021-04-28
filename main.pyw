@@ -61,9 +61,10 @@ def decoding(string_get, seed_get, where_to_put_answer, what_cipher):
             where_to_put_answer.insert(tkinter.END, ceasar.encrypt(string, int(seed), const.DECODE))
     elif what_cipher.get() == "Vernam":
         if not correct.correct(string, seed.lower()) or len(seed) != len(string) or len(string) == 0:
+            print(correct.correct(string, seed.lower()), len(seed) != len(string), len(string))
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
         else:
-            where_to_put_answer.insert(tkinter.END, vernam.encrypt(string, seed))
+            where_to_put_answer.insert(tkinter.END, vernam.encrypt(string, seed.lower()))
     else:
         if not seed.isalpha() or not correct.correct(string, seed.lower()):
             where_to_put_answer.insert(tkinter.END, "Incorrect Input. Try again")
