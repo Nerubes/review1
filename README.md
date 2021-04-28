@@ -30,11 +30,11 @@ python main.pyw
 ```
 
 # Примеры: #
-![img.png](Screenshot 2.png)
-![img.png](Screenshot 3.png)
-![img.png](Screenshot 4.png)
-![img.png](Screenshot 5.png)
-![img.png](Screenshot 6.png)
-![img.png](Screenshot 7.png)
-![img.png](Screenshot 8(1).png)
-![img.png](Screenshot 8(2).png)
+![img.png](Screenshot2.png)
+![img.png](Screenshot3.png)
+![img.png](Screenshot4.png)
+![img.png](Screenshot5.png)
+![img.png](Screenshot6.png)
+![img.png](Screenshot7.png)
+![img.png](Screenshot8(1).png)
+![img.png](Screenshot8(2).png)
